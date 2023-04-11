@@ -122,6 +122,10 @@ Additionally, you are required to write automated tests as well:
 - This is going to require more "end to end" testing than you've done in the past.
   - To test signin, your tests actually need to create a user first, then try and login.  i.e. The signin test will rely on the success of the signup test.
 
+## UML
+
+![uml](lab6.jpg)
+
 ## Assignment Submission Instructions
 
 Refer to the the [Submitting Standard Node.js Lab Submission Instructions](../../../reference/submission-instructions/labs/node-apps.md) for the complete lab submission process and expectations.

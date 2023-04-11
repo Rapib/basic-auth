@@ -1,23 +1,36 @@
 'use strict';
 
 // 3rd Party Resources
+// to server.js
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+
+// to user model.js
 const bcrypt = require('bcrypt');
+
+//to basic.js
 const base64 = require('base-64');
+// to model.js
 const { Sequelize, DataTypes } = require('sequelize');
 
 // Prepare the express app
+// to server.js
 const app = express();
-
+app.use(cors());
 // Process JSON input and put the data on req.body
+// to server.js
 app.use(express.json());
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+// to model.js
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite:memory:');
 
 // Process FORM intput and put the data on req.body
+// to server.js
 app.use(express.urlencoded({ extended: true }));
 
 // Create a Sequelize model
+// to user-model.js
 const Users = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
@@ -33,10 +46,15 @@ const Users = sequelize.define('User', {
 // Two ways to test this route with httpie
 // echo '{"username":"john","password":"foo"}' | http post :3000/signup
 // http post :3000/signup username=john password=foo
+// {
+//   "username": "h",
+//   "password": "h"
+// }
+// too router.js
 app.post('/signup', async (req, res) => {
 
   try {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
+    // req.body.password = await bcrypt.hash(req.body.password, 10);
     const record = await Users.create(req.body);
     res.status(200).json(record);
   } catch (e) { res.status(403).send('Error Creating User'); }
@@ -46,6 +64,7 @@ app.post('/signup', async (req, res) => {
 // Signin Route -- login with username and password
 // test with httpie
 // http post :3000/signin -a john:foo
+// to basic.js
 app.post('/signin', async (req, res) => {
 
   /*
@@ -84,6 +103,8 @@ app.post('/signin', async (req, res) => {
 });
 
 // make sure our tables are created, start up the HTTP server.
+
+// to index
 sequelize.sync()
   .then(() => {
     app.listen(3000, () => console.log('server up'));
