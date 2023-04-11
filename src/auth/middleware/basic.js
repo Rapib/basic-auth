@@ -51,7 +51,6 @@ async function signin (req, res, next){
           throw new Error('new Error at line 50');
         }
       } catch (error) { 
-        console.log(error);
         res.status(403).send('Invalid Login');
        }
 
