@@ -128,4 +128,4 @@ Additionally, you are required to write automated tests as well:
 
 ## Assignment Submission Instructions
 
-Refer to the the [Submitting Standard Node.js Lab Submission Instructions](../../../reference/submission-instructions/labs/node-apps.md) for the complete lab submission process and expectations.
+[render.com]()
