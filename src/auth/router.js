@@ -19,7 +19,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signin', basicAuth, (request, response) => {
-  console.log(request.body);
+    console.log(request.body);
   // When validated, send a JSON object as the response with the following properties:
 // user: The users' database record
   response.status(200).json(`user: ${request.body.username}`);
