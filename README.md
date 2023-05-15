@@ -1,26 +1,10 @@
-# LAB: Authentication
+# Basic Authentication
 
-**Authentication System Phase 1:** Deploy an Express server that implements Basic Authentication, with signup and signin capabilities, using a Postgres database for storage.
+## Overview
 
-## Before you begin
+An Express server that implements Basic Authentication, with signup and signin capabilities, using a Postgres database for storage.
 
-Create a UML diagram of the authentication system on a whiteboard before you start
-
-1. Refer to the *Getting Started* guide  in the [lab submission instructions](../../../reference/submission-instructions/labs/README.md).
-1. Create a new repository called `basic-auth`.
-1. Copy the files from within the `starter-code` folder of your class repository into your new repo as a starting point.
-1. Work in a new branch called `dev`, created from `main`.
-1. Following completion of this assignment, create a Pull Request from `dev` to `main` and merge your code.
-   - You will deploy from your `main` branch to a new app at your cloud service provider.
-   - You will add a link to the PR that you merged in your README for grading purposes.
-
-## Business Requirements
-
-Refer to the [Authentication System Overview](../../apps-and-libraries/auth-server/README.md) for a complete review of the final application, including Business and Technical requirements along with the development roadmap.
-
-## Phase 1 Requirements
-
-Today, we begin the first of a 3-Phase build of an authentication system, written in Express. The following core requirements detail the functionality for this phase of the project.
+## User Stories
 
 ### As a user, I want to create a new account so that I may later login
 
@@ -38,39 +22,6 @@ Today, we begin the first of a 3-Phase build of an authentication system, writte
   - On a successful account login, return a **200** status with the user object in the body.
   - On any error, trigger your error handler with the message "Invalid Login".
   
-### Application Structure (proposed)
-
-> NOTE: The majority of our work for this server will be done within the `src/auth` folder. The rest of the system should be generic express. Why? It's our intention to be able to "lift" the `auth` folder and "drop" it into any other server (such as our API server) and be able to use authorization to "protect" those CRUD routes. This makes our entire auth system very modular. Think of `index.js` and `server.js` as nothing more than the basics to get a server started, with 100% of the actual logic living within the `auth` module
-
-```text
-├── .github
-│   ├── workflows
-│   │   └── node.yml
-├── config
-│   ├── config.json
-├── __tests__
-│   ├── server.test.js (integration test)
-├── src
-│   ├── auth
-│   │   ├── middleware
-│   │   │   ├── basic.js
-│   │   ├── basic.test.js
-│   │   ├── models
-│   │   │   ├── index.js
-│   │   │   └── users-model.js
-│   │   ├── router.js
-│   ├── middleware
-│   │   ├── 404.js
-│   │   ├── 404.test.js  (unit test)
-│   │   └── 500.js
-│   └── server.js
-├── .eslintrc.json
-├── .gitignore
-├── index.js
-├── package.json
-└── README.md
-```
-
 ## Technical Requirements / Notes
 
 > You have been supplied a "monolithic" express server in the `starter-code` folder which fulfills the above requirements. To complete the work for this phase, refactor the provided server using best practices, modularizing the code and providing tests, as follows:
@@ -109,23 +60,6 @@ Keep your authentication related files in a folder called `/auth` so they are in
     - When validated, send a JSON object as the response with the following properties:
       - `user`: The users' database record
 
-### Testing
+## Link
 
-You should manually test your routes using an HTTP REST client, either in the terminal or an HTTP REST client with a GUI.
-Additionally, you are required to write automated tests as well:
-
-- POST to /signup to create a new user.
-- POST to /signin to login as a user (use basic auth).
-- Need tests for auth middleware and the routes.
-  - Does the middleware function (send it a basic header).
-  - Do the routes assert the requirements (signup/signin).
-- This is going to require more "end to end" testing than you've done in the past.
-  - To test signin, your tests actually need to create a user first, then try and login.  i.e. The signin test will rely on the success of the signup test.
-
-## UML
-
-![uml](lab6.jpg)
-
-## Assignment Submission Instructions
-
-[render.com](https://basicauth-0wjj.onrender.com)
+<https://basicauth-0wjj.onrender.com>
